@@ -1,0 +1,13 @@
+Lab: 2FA broken logic
+Task: Exploit 2FA logic flaw and access carlos account.
+Your credentials: wiener:peter
+Victim's username: carlos
+
+Soln:
+(1) Analyze the workflow of authentication.
+(2) \login page redirects to the \login2 page if username and pass are correct.
+(3) Use correct username and password capture \login2 request in burp.
+(4) Observe the verify paramater in cookie -> change it to 'carlos' -> it will send 2FA code for username carlos. (Seesion Id is not properly verified, remove the parameter session in cookie for all the req.)
+(5) Now submit the code recieved for correct credentials -> capture req in burp.
+(6) change verify paramater to carlos, remove the session paramater -> Brute for 2FA code of carlos.
+(7) Filter 302 response -> Use same session ID -> Login using correct creds -> Visit my account page -> inspect -> change session=SESSION ID you got and verify=carlos.

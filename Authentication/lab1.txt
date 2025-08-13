@@ -1,0 +1,6 @@
+Lab: Username enumeration via different responses
+Note: Vulnerable to brute force attack.
+
+Soln:
+    (1) Identify (Brute-force) the username.
+    (2) Brute force for password.

@@ -1,0 +1,11 @@
+Lab: 2FA simple bypass
+Note: Already have username and password, need to find 2FA verification code.
+
+Solution:
+(1) Login using creds.
+(2) Change the URL path to 'my-account' -> no verification code needed.
+
+OR 
+
+(1) capture the req in burp.
+(2) Brute force for OTP (4 digit)

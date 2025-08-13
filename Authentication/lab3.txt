@@ -1,0 +1,6 @@
+Lab: Password reset broken logic
+
+Soln:
+(1) temp-forgot-password-token=""&username=carlos&new-password-1=azaz&new-password-2=azaz
+(2) 'temp-forgot-password-token' no verification for the token.
+(3) Submit empty token with username carlos.

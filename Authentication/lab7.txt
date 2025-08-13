@@ -1,0 +1,8 @@
+Lab: Username enumeration via account lock
+Note: Account lock after freq. requests.
+
+Soln:
+(1) username=$a$&password=test$$ (Use cluster bomb attack with password as null payload. value:5) -> brute force username. (It gives account lock message only for valid usernames.)
+(2) Username: al
+(3) Password -> username=al&password=$test$ (See response size -> One response don't have any error)
+(4) Password: andrew

