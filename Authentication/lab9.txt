@@ -1,0 +1,10 @@
+Lab: Brute-forcing a stay-logged-in cookie
+Note: Stay login even after user close the browser.
+    Cookie for this functionality is vulnerable to brute forcing.
+
+Your credentials: wiener:peter
+Victim's username: carlos
+
+Analysis:
+(1) base64(carlos:md5(password))
+(2) Add rules in intruder -> md5 -> prefix -> encoding.

