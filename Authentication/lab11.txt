@@ -1,0 +1,9 @@
+Lab: Password reset poisoning via middleware
+Notes: Vulnerable to password reset poisoning
+    To solve, og in to Carlos's account.
+    credentials: wiener:peter
+
+Analysis:
+(1) X-Forwarded-Host: Used to identify the original Host
+(2) Set host as exploit server url.
+(3) See logs for 'temp-forgot-password-token'

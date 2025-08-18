@@ -1,0 +1,9 @@
+Lab: Password brute-force via password change
+Your credentials: wiener:peter
+Victim's username: carlos
+
+Analysis:
+(1) New password do not match and current password is incorrect -> current password is incorrect.
+(2) New password do not match and current password is crrect -> New password do not match.
+(3) New passowrd match and current password is incorrect -> logged out.
+(4) Current password -> football

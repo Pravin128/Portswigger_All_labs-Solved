@@ -1,0 +1,7 @@
+Lab: 2FA bypass using a brute-force attack
+Victim's credentials: carlos:montoya
+
+Note: Verification code will reset while you're running your attack, you may need to repeat this attack several times before you succeed.
+
+Analysis:
+(1) 
