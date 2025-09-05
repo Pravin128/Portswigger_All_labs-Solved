@@ -1,0 +1,15 @@
+Lab: Client-side desync
+
+Analysis:
+(1)  Server ignores the Content-Length header
+(2) Error with HTTP/2 -> server ALPN does not advertise HTTP/s. You can force HTTP/2 from repeater menu.
+(3) POST / HTTP/1.1
+Host: 0a640017041d4af78026031400500012.h1-web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 20
+
+-----------> (Quick response - Potential client side desync)
+
+(4)
+Use differential request technique.
+lab14.txt verifies attack can be performed from browser also.

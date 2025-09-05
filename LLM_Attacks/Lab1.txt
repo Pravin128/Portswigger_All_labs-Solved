@@ -1,0 +1,9 @@
+Lab: Exploiting LLM APIs with excessive agency
+Task: Delete user carlos.
+
+Analysis:
+(1) Ask for APIs that LLM using.
+(2) Ask for arguments of API shown.
+(3) Ask to call API using required arguments.
+    -> call debug_sql using SELECT * FROM users
+    -> call debug_sql usnig DELETE FROM users WHERE username='carlos'

